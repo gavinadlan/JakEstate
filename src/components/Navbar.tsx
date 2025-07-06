@@ -18,6 +18,14 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+    setIsOpen(false); // Close mobile menu after clicking
+  };
+
   return (
     <nav
       className={`fixed w-full z-50 transition-all duration-300 ${
@@ -44,46 +52,53 @@ const Navbar = () => {
 
           {/* Menu Desktop */}
           <div className="hidden md:flex items-center space-x-8">
-            <a
-              href="#"
-              className={`hover:text-blue-600 ${
+            <button
+              onClick={() => scrollToSection("hero")}
+              className={`hover:text-blue-600 transition-colors duration-200 ${
                 isScrolled ? "text-gray-700" : "text-white"
               }`}
             >
               Home
-            </a>
-            <a
-              href="#"
-              className={`hover:text-blue-600 ${
+            </button>
+            <button
+              onClick={() => scrollToSection("about")}
+              className={`hover:text-blue-600 transition-colors duration-200 ${
                 isScrolled ? "text-gray-700" : "text-white"
               }`}
             >
               About
-            </a>
-            <a
-              href="#"
-              className={`hover:text-blue-600 ${
+            </button>
+            <button
+              onClick={() => scrollToSection("projects")}
+              className={`hover:text-blue-600 transition-colors duration-200 ${
                 isScrolled ? "text-gray-700" : "text-white"
               }`}
             >
               Projects
-            </a>
-            <a
-              href="#"
-              className={`hover:text-blue-600 ${
+            </button>
+            <button
+              onClick={() => scrollToSection("testimonials")}
+              className={`hover:text-blue-600 transition-colors duration-200 ${
                 isScrolled ? "text-gray-700" : "text-white"
               }`}
             >
               Testimonials
-            </a>
-            <button className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
-              Sign up
+            </button>
+            <button
+              onClick={() => scrollToSection("contact")}
+              className={`hover:text-blue-600 transition-colors duration-200 ${
+                isScrolled ? "text-gray-700" : "text-white"
+              }`}
+            >
+              Contact
             </button>
           </div>
 
           {/* Button Mobile Menu */}
           <button
-            className="md:hidden text-white focus:outline-none"
+            className={`md:hidden focus:outline-none ${
+              isScrolled ? "text-gray-700" : "text-white"
+            }`}
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X className="h-8 w-8" /> : <Menu className="h-8 w-8" />}
@@ -100,20 +115,35 @@ const Navbar = () => {
         }`}
       >
         <div className="flex flex-col items-center space-y-4 py-4">
-          <a href="#" className="text-gray-700 hover:text-blue-600">
+          <button
+            onClick={() => scrollToSection("hero")}
+            className="text-gray-700 hover:text-blue-600 transition-colors duration-200"
+          >
             Home
-          </a>
-          <a href="#" className="text-gray-700 hover:text-blue-600">
+          </button>
+          <button
+            onClick={() => scrollToSection("about")}
+            className="text-gray-700 hover:text-blue-600 transition-colors duration-200"
+          >
             About
-          </a>
-          <a href="#" className="text-gray-700 hover:text-blue-600">
+          </button>
+          <button
+            onClick={() => scrollToSection("projects")}
+            className="text-gray-700 hover:text-blue-600 transition-colors duration-200"
+          >
             Projects
-          </a>
-          <a href="#" className="text-gray-700 hover:text-blue-600">
+          </button>
+          <button
+            onClick={() => scrollToSection("testimonials")}
+            className="text-gray-700 hover:text-blue-600 transition-colors duration-200"
+          >
             Testimonials
-          </a>
-          <button className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
-            Sign up
+          </button>
+          <button
+            onClick={() => scrollToSection("contact")}
+            className="text-gray-700 hover:text-blue-600 transition-colors duration-200"
+          >
+            Contact
           </button>
         </div>
       </div>

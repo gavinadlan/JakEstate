@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 export function useInView(options = {}) {
-  const ref = useRef<HTMLElement | null>(null);
+  const ref = useRef<HTMLDivElement | null>(null);
   const [isInView, setIsInView] = useState(false);
 
   useEffect(() => {
